@@ -27,7 +27,14 @@ sudo systemctl start docker
 Pull the OpenWebUI image from the official GitHub Container Registry and run it:
 
 ```bash
-sudo docker run -d --name openwebui -p 3000:8080 -v openwebui-data:/app/backend/data -e OLLAMA_BASE_URL=http://172.17.0.1:11434 --add-host=host.docker.internal:host-gateway --restart unless-stopped ghcr.io/open-web
+docker run -d \
+  --name openwebui \
+  -p 3000:8080 \
+  -v openwebui-data:/app/backend/data \
+  -e OLLAMA_BASE_URL=http://172.17.0.1:11434 \
+  ghcr.io/open-webui/open-webui:main
+
+
 ```
 
 Note that we are setting the `OLLAMA_BASE_URL` environment variable to the Ollama engine's URL (http://172.17.0.1:11434). This is necessary for OpenWebUI to communicate with Ollama.
